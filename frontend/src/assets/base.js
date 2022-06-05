@@ -3,7 +3,12 @@ import { darkBlack, grey, white } from "./../helpers";
 import { BoxShadow } from "./mixins";
 
 export const Container = styled.div`
-  margin-top: 5rem;
+  margin-top: 2.5rem;
+  padding: 0 5rem;
+
+  @media (max-width: 800px) {
+    padding: 0 1rem;
+  }
 `;
 
 export const Field = styled.div`
@@ -12,7 +17,6 @@ export const Field = styled.div`
   align-items: ${({ alignItems }) => alignItems || "none"};
   flex-direction: column;
   gap: 1rem;
-  padding: 0 5rem;
 `;
 
 export const Label = styled.label`
@@ -32,7 +36,7 @@ export const Input = styled.input`
   background: ${grey};
 `;
 
-export const FieldsWrapper = styled.div`
+export const FieldsWrapper = styled.form`
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -54,5 +58,10 @@ export const Button = styled.button`
   &:hover {
     transform: scale(1.05);
     opacity: 0.5;
+  }
+
+  @media (max-width: 800px) {
+    width: 100%;
+    padding: 1.2rem 0;
   }
 `;
