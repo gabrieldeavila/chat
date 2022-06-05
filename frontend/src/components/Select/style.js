@@ -29,7 +29,6 @@ export const SelectStyle = {
   }),
   singleValue: (base = {}, state = {}) => ({
     ...base,
-    fontWeight: "bold",
     color: darkBlack,
     height: "fit-content",
     margin: "0px",
