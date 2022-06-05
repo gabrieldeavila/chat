@@ -2,6 +2,7 @@ import RoutesWrapper from "./routes/index.jsx";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { lightBlack } from "./helpers";
+import GlobalContextProvider from "./Context/index.jsx";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -17,11 +18,11 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <div className="App">
+    <GlobalContextProvider>
       <GlobalStyle />
 
       <RoutesWrapper />
-    </div>
+    </GlobalContextProvider>
   );
 }
 
