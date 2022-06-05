@@ -1,6 +1,8 @@
-import React, { memo } from "react";
+import React, { memo, useCallback, useContext, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import SelectWrapper from "../../components/Select";
+import { GlobalContext } from "../../Context";
 import {
   Button,
   Container,
@@ -11,26 +13,67 @@ import {
 } from "./../../assets/base";
 
 function Home() {
+  const navigate = useNavigate();
+
+  const options = useMemo(
+    () => [
+      { label: "Os patonautas", value: "Os patonautas" },
+      { label: "Patos rebeldes", value: "Patos rebeldes" },
+      { label: "União dos patos", value: "União dos patos" },
+    ],
+    []
+  );
+
+  const [values, setValues] = useState({
+    email: "",
+    user: "",
+    type: options[0].value,
+  });
+
+  // prettier-ignore
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    
+    navigate("/chat", { state: values, replace: true });
+  }, [values]);
+
   return (
     <Container>
-      <FieldsWrapper>
+      <FieldsWrapper onSubmit={handleSubmit}>
         <Field>
           <Label>Email</Label>
-          <Input />
+          <Input
+            onChange={(e) => {
+              setValues({ ...values, email: e.target.value });
+            }}
+            placeholder="Digite..."
+            required
+            type="email"
+          />
         </Field>
 
         <Field>
           <Label>Usuário</Label>
-          <Input />
+          <Input
+            onChange={(e) => {
+              setValues({ ...values, user: e.target.value });
+            }}
+            placeholder="Digite..."
+            required
+            type="text"
+          />
         </Field>
 
         <Field>
           <Label>Tipo de Chat</Label>
-          <SelectWrapper />
+          <SelectWrapper
+            onChange={(e) => setValues({ ...values, type: e.value })}
+            options={options}
+          />
         </Field>
 
         <Field alignItems="center">
-          <Button>Entrar</Button>
+          <Button type="submit">Entrar</Button>
         </Field>
       </FieldsWrapper>
     </Container>
