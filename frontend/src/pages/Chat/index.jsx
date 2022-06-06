@@ -33,7 +33,7 @@ function Chat() {
     }
   }, [state]);
 
-  const socket = io("https://chat-backend-orcin.vercel.app:3001", {
+  const socket = io("https://pato-chat.herokuapp.com", {
     withCredentials: true,
   });
 
