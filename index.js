@@ -6,10 +6,9 @@ const httpServer = require("http").createServer();
 const express = require("express");
 
 const io = require("socket.io")(httpServer, {
-  cors: {
-    origin: "https://chat-brown.vercel.app",
-    methods: ["GET", "POST"],
-    credentials: true,
+  allowRequest: (req, callback) => {
+    const noOriginHeader = req.headers.origin === undefined;
+    callback(null, noOriginHeader);
   },
 });
 
