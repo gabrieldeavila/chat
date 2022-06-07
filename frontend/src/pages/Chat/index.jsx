@@ -33,7 +33,7 @@ function Chat() {
     }
   }, [state]);
 
-  const socket = io("https://pato-chat.herokuapp.com", {
+  const socket = io("http://localhost:3001", {
     withCredentials: true,
   });
 
