@@ -34,15 +34,15 @@ function Messages({ state, socket }) {
   }, [user, type]);
 
   const handleSocket = useCallback(() => {
-    // Join chatroom
+    // Entra no chat
     socket.emit("joinRoom", { username: user, room: type });
 
-    // Get room and users
+    // Pega a sala e usuários
     socket.on("roomUsers", ({ users }) => {
       outputUsers(users);
     });
 
-    // Message from server
+    // Recebe mensagem do server
     socket.on("message", (message) => {
       outputMessage(message);
     });
