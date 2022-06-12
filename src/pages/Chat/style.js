@@ -7,7 +7,7 @@ export const ChatTitle = styled.h1`
   text-align: center;
   color: ${grey};
   font-weight: 600;
-  font-size: 25px;
+  font-size: 24px;
 `;
 
 export const ChatFooter = styled.form`
